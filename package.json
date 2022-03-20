@@ -1,0 +1,20 @@
+{
+  "name": "gun-pixi",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4",
+    "vite": "^2.8.0"
+  },
+  "dependencies": {
+    "gun": "^0.2020.1236",
+    "phaser": "^3.55.2",
+    "pixi-spine": "^3.0.13",
+    "pixi.js": "^6.2.2"
+  }
+}
