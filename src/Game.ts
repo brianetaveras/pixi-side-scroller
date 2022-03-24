@@ -11,8 +11,10 @@ class Game {
       antialias: true,
       resizeTo: window,
     });
-
+    // @ts-ignore;
+    this.app.inputs = {};
     document.body.appendChild(this.app.view);
+    this.handleKeyboardInput();
     this.startGameLoop();
   }
 
@@ -25,14 +27,13 @@ class Game {
     });
   }
 
-  addGameObject(id: string, gameObject: GameObject): void {
-    if (!id || !gameObject) {
-      console.log("id and gameObject are required params.");
+  addGameObject( gameObject: GameObject): void {
+    if (!gameObject) {
+      console.log("gameObject is required params");
       return;
     }
-    this.gameObjects[id] = gameObject;
-    this.gameObjects[id].create();
-    
+    this.gameObjects[gameObject.id] = gameObject;
+    this.gameObjects[gameObject.id].create();
   }
 
   removeGameObject(id: string): boolean {
@@ -52,6 +53,17 @@ class Game {
       return this.gameObjects[id];
     }
     return null;
+  }
+
+  handleKeyboardInput() {
+    document.addEventListener("keydown", ({ code }) => {
+      // @ts-ignore
+      this.app.inputs[code] = true;
+    });
+    document.addEventListener("keyup", ({ code }) => {
+      // @ts-ignore
+      delete this.app.inputs[code];
+    });
   }
 }
 
